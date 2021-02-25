@@ -6,16 +6,16 @@
 
 
 ## THIS SCRIPT:
-# - loads the function
-# - makes the data
-# - calculates inter-point distances
-# - fucks up the NA insertions
+# - loads the function calleddistance_btw_2pts
+# - makes a data frame called d that has 300 xy points split between three individuals
+# - calculates inter-point distances, which would be useful for if they had a long distance relationship, and had to decide where to meet each other for ROMANCE. 
+# - really jimmys-up the NA insertions
 
 
 # Setup ------------------------------------------------------------------------
 
 # > Load packages ----
-library(tidyverse)
+library(tidyverse)# i am being held hostage by Hadley Wickham, that is the only reason I am using this. 
 
 
 # > Load fcns ----
@@ -38,7 +38,7 @@ str(d)
 
 # Fancy calculations -----------------------------------------------------------
 
-#let's do this the ugly way, shall we?
+#let's do this the ugly way, shall we? Yes lets. 
 
 #calculate the distance between each point and the next, append to d
 d$StepLength <- c(NA, 
@@ -51,4 +51,5 @@ d$StepLength[1:(nrow(d)-1)] <- ifelse(d$Indiv[2:(nrow(d))] != d$Indiv[1:(nrow(d)
                                       NA,
                                       d$StepLength)
                
-#it is wrong.
+#it is wrong. 
+#no you are. 
