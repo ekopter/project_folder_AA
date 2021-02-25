@@ -1,6 +1,6 @@
 #' ---
-#' title: "A little R script by Chase"
-#' author: "Chase, sortof"
+#' title: "A little R script"
+#' author: "Alie"
 #' date: "2021-02-25"
 #' ---
 
@@ -9,6 +9,7 @@
 # - loads the function
 # - makes the data
 # - calculates inter-point distances
+# - fucks up the NA insertions
 
 
 # Setup ------------------------------------------------------------------------
