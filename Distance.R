@@ -6,10 +6,10 @@
 
 
 ## THIS SCRIPT:
-# - loads the function calleddistance_btw_2pts
+# - loads the function called distance_btw_2pts
 # - makes a data frame called d that has 300 xy points split between three individuals
 # - calculates inter-point distances, which would be useful for if they had a long distance relationship, and had to decide where to meet each other for ROMANCE. 
-# - really jimmys-up the NA insertions
+# - does the NA insertions PERFECTLY, albeit, a bit clunky
 
 
 # Setup ------------------------------------------------------------------------
@@ -41,15 +41,13 @@ str(d)
 #let's do this the ugly way, shall we? Yes lets. 
 
 #calculate the distance between each point and the next, append to d
-d$StepLength <- c(NA, 
-                  dist_btw_2pts(d$X[1:(nrow(d)-1)], d$Y[1:(nrow(d)-1)],
-                              d$X[2:(nrow(d))], d$Y[2:(nrow(d))]) )
+boom <- dist_btw_2pts(d$X[1:(nrow(d)-1)], d$Y[1:(nrow(d)-1)],
+                      d$X[2:(nrow(d))], d$Y[2:(nrow(d))])
 
 #replace first point of each indiv with NA
+boom[which(d$Indiv[1:(nrow(d)-1)] != d$Indiv[2:(nrow(d))])] <- NA
 
-d$StepLength[1:(nrow(d)-1)] <- ifelse(d$Indiv[2:(nrow(d))] != d$Indiv[1:(nrow(d)-1)], 
-                                      NA,
-                                      d$StepLength)
+
+d$StepLength <- c(NA, boom)
                
-#it is wrong. 
-#no you are. 
+#fixed it. this works
